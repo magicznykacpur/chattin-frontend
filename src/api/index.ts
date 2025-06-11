@@ -1,11 +1,13 @@
 const socket = new WebSocket("ws://localhost:42069/ws");
 
-export const connect = () => {
+export const connect = (callback: (msg: any) => void) => {
   console.log("Attempting connection...");
 
   socket.onopen = () => console.log("Successfully connected!");
 
-  socket.onmessage = (msg) => console.log(msg);
+  socket.onmessage = (msg) => {
+    callback(msg);
+  };
 
   socket.onclose = (event) => console.log(`Socket closed connection: ${event}`);
 
@@ -13,6 +15,5 @@ export const connect = () => {
 };
 
 export const sendMsg = (msg: string) => {
-  console.log(`Sending message: ${msg}`);
   socket.send(msg);
 };
