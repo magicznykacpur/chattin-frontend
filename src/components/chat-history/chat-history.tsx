@@ -19,6 +19,8 @@ const HistoryContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   background-color: #aca5a5eb;
+  height: 700px;
+  overflow-y: scroll;
 `;
 
 const NoMessages = styled.div`
