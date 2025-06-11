@@ -21,9 +21,16 @@ export type WebSocketMessage = {
 };
 
 const Message = ({ msg }: { msg: WebSocketMessage }) => {
+  const formattedTime = new Intl.DateTimeFormat("en-GB", {
+    timeStyle: "medium",
+    timeZone: "UTC",
+  }).format(new Date(msg.timeStamp * 1e3));
+
+  const formattedMsg = msg.data.split(`"body":"`)[1].split(`"}`)[0]
+
   return (
     <MessageContainer>
-      {`{ ts: ${msg.timeStamp}, data: ${msg.data}, origin: ${msg.origin} }`}
+      {`${formattedMsg}`}
     </MessageContainer>
   );
 };
@@ -31,10 +38,10 @@ const Message = ({ msg }: { msg: WebSocketMessage }) => {
 const MessageContainer = styled.div`
   margin: 1rem;
   padding: 1rem;
-  border-style: solid;
-  border-width: 0.05rem;
-  border-color: black;
   border-radius: 0.5rem;
+  box-shadow: -4px 2px 11px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -4px 2px 11px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -4px 2px 11px 0px rgba(0, 0, 0, 0.75);
 `;
 
 export default Message;

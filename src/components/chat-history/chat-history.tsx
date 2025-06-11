@@ -18,7 +18,6 @@ const HistoryContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #aca5a5eb;
   height: 700px;
   overflow-y: scroll;
 `;
